@@ -34,7 +34,7 @@ flutter_pro_architect create_bloc_user
 Install necessary flutter packages:
 
 ```bash
-flutter_pro_architect setup
+dart run flutter_pro_architect setup
 ```
 Bootstrap project structure (Android + iOS by default):
 

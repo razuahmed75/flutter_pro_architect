@@ -17,5 +17,6 @@
 library;
 export 'src/cli.dart';
 export 'src/feature_generator.dart';
+export 'src/setup_generator.dart';
 export 'src/name_utils.dart';
 export 'src/templates.dart';

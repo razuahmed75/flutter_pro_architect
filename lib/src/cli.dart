@@ -3,40 +3,15 @@ import 'dart:io';
 import 'package:args/args.dart';
 
 import 'feature_generator.dart';
+import 'setup_generator.dart';
 import 'name_utils.dart';
 
-/// CLI entry service for generating feature modules with the
-/// `create_bloc_<feature_name>` command format.
-///
-/// Example:
-/// ```dart
-/// final cli = FlutterProArchitectCli();
-/// final code = await cli.run(['create_bloc_user']);
-/// print(code);
-/// ```
+/// CLI entry service for generating feature modules and project setup.
 class FlutterProArchitectCli {
   /// Name of the executable command shown in usage help.
-  ///
-  /// Example:
-  /// ```dart
-  /// print(FlutterProArchitectCli.executableName);
-  /// ```
   static const String executableName = 'flutter_pro_architect';
 
-  /// Parses [arguments], validates command format, and generates a feature.
-  ///
-  /// Parameters:
-  /// - [arguments]: Raw CLI arguments.
-  ///
-  /// Returns:
-  /// - Exit code `0` on success, non-zero on failure.
-  ///
-  /// Example:
-  /// ```dart
-  /// final exitCode = await FlutterProArchitectCli().run(
-  ///   ['create_bloc_auth', '--no-color'],
-  /// );
-  /// ```
+  /// Parses [arguments], validates command format, and executes the command.
   Future<int> run(List<String> arguments) async {
     final parser = ArgParser()
       ..addFlag('help', abbr: 'h', negatable: false, help: 'Show usage')
@@ -61,6 +36,11 @@ class FlutterProArchitectCli {
     if (command == null) {
       _printUsage(parser);
       return 64;
+    }
+
+    if (command == 'setup') {
+      final generator = SetupGenerator(colorEnabled: colorEnabled);
+      return await generator.run(arguments);
     }
 
     if (!command.startsWith('create_bloc_')) {
@@ -107,18 +87,22 @@ class FlutterProArchitectCli {
     final invoked = Platform.script.pathSegments.isEmpty
         ? ''
         : Platform.script.pathSegments.last.split('.').first;
-    if (invoked.startsWith('create_bloc_')) {
+    if (invoked == 'setup' || invoked.startsWith('create_bloc_')) {
       return invoked;
     }
     return null;
   }
 
   void _printUsage(ArgParser parser) {
-    stdout.writeln('Usage: $executableName create_bloc_<feature_name> [--no-color]');
-    stdout.writeln('Examples:');
+    stdout.writeln('Usage: $executableName <command> [options]');
+    stdout.writeln('\nAvailable Commands:');
+    stdout.writeln('  setup                      Scaffold project and add packages');
+    stdout.writeln('  create_bloc_<feature>      Generate a new feature module');
+    stdout.writeln('\nExamples:');
+    stdout.writeln('  $executableName setup');
+    stdout.writeln('  $executableName setup --both');
     stdout.writeln('  $executableName create_bloc_user');
-    stdout.writeln('  $executableName create_bloc_auth');
-    stdout.writeln('Options:\n${parser.usage}');
+    stdout.writeln('\nOptions:\n${parser.usage}');
   }
 
   String _style(String value, String ansi, bool enabled) {
