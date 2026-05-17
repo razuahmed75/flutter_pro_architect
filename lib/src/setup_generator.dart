@@ -342,8 +342,8 @@ class Failure {
 ''';
 
 const String _usecaseTemplate = '''
-abstract class UseCase<Type, Params> {
-  Future<Type> call(Params params);
+abstract class UseCase<T, Params> {
+  Future<Either<Failure, T>> call(Params params);
 }
 ''';
 
