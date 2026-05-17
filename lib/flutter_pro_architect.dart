@@ -14,6 +14,7 @@
 ///   print(exitCode);
 /// }
 /// ```
+library;
 export 'src/cli.dart';
 export 'src/feature_generator.dart';
 export 'src/name_utils.dart';

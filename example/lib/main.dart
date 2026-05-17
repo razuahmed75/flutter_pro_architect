@@ -22,8 +22,7 @@ class ProArchitectExampleApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF6366F1), // Elegant Indigo
           brightness: Brightness.dark,
-          background: const Color(0xFF0F0F1A), // Deep dark premium space background
-          surface: const Color(0xFF1E1E2E), // Sleek container surface
+          surface: const Color(0xFF0F0F1A), // Deep dark premium space background
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
@@ -259,7 +258,7 @@ environment:
 
       // PUBLIC API DEMONSTRATION: Instantiating and using FeatureGenerator
       final generator = FeatureGenerator(colorEnabled: false);
-      _generationLogs.add('Invoking FeatureGenerator.generate("${_snakeCaseOutput}")...');
+      _generationLogs.add('Invoking FeatureGenerator.generate("$_snakeCaseOutput")...');
       
       // PUBLIC API DEMONSTRATION: Capturing and reading GenerationSummary
       final GenerationSummary summary = await generator.generate(_snakeCaseOutput);
@@ -296,7 +295,7 @@ environment:
 
       // PUBLIC API DEMONSTRATION: Instantiating and using FlutterProArchitectCli
       final cli = FlutterProArchitectCli();
-      final command = 'create_bloc_${_snakeCaseOutput}';
+      final command = 'create_bloc_$_snakeCaseOutput';
       _generationLogs.add('Executing command: ${FlutterProArchitectCli.executableName} $command --no-color');
 
       final exitCode = await cli.run([command, '--no-color']);
@@ -410,7 +409,7 @@ environment:
         border: Border.all(color: const Color(0xFF312E81), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF6366F1).withOpacity(0.1),
+            color: const Color(0xFF6366F1).withValues(alpha:0.1),
             blurRadius: 16,
             offset: const Offset(0, 4),
           )
@@ -617,7 +616,7 @@ environment:
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: _cliExitCode == 0 ? Colors.green.withOpacity(0.2) : Colors.red.withOpacity(0.2),
+                        color: _cliExitCode == 0 ? Colors.green.withValues(alpha:0.2) : Colors.red.withValues(alpha:0.2),
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(color: _cliExitCode == 0 ? Colors.green : Colors.red),
                       ),
@@ -634,7 +633,7 @@ environment:
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: _generationSuccess ? Colors.green.withOpacity(0.2) : Colors.red.withOpacity(0.2),
+                        color: _generationSuccess ? Colors.green.withValues(alpha:0.2) : Colors.red.withValues(alpha:0.2),
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(color: _generationSuccess ? Colors.green : Colors.red),
                       ),
@@ -927,7 +926,7 @@ environment:
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Copied "$value" to clipboard!'),
-                          backgroundColor: accentColor.withOpacity(0.9),
+                          backgroundColor: accentColor.withValues(alpha:0.9),
                         ),
                       );
                     },
