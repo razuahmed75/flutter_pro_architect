@@ -5,9 +5,38 @@ import 'package:args/args.dart';
 import 'feature_generator.dart';
 import 'name_utils.dart';
 
+/// CLI entry service for generating feature modules with the
+/// `create_bloc_<feature_name>` command format.
+///
+/// Example:
+/// ```dart
+/// final cli = FlutterProArchitectCli();
+/// final code = await cli.run(['create_bloc_user']);
+/// print(code);
+/// ```
 class FlutterProArchitectCli {
+  /// Name of the executable command shown in usage help.
+  ///
+  /// Example:
+  /// ```dart
+  /// print(FlutterProArchitectCli.executableName);
+  /// ```
   static const String executableName = 'flutter_pro_architect';
 
+  /// Parses [arguments], validates command format, and generates a feature.
+  ///
+  /// Parameters:
+  /// - [arguments]: Raw CLI arguments.
+  ///
+  /// Returns:
+  /// - Exit code `0` on success, non-zero on failure.
+  ///
+  /// Example:
+  /// ```dart
+  /// final exitCode = await FlutterProArchitectCli().run(
+  ///   ['create_bloc_auth', '--no-color'],
+  /// );
+  /// ```
   Future<int> run(List<String> arguments) async {
     final parser = ArgParser()
       ..addFlag('help', abbr: 'h', negatable: false, help: 'Show usage')
@@ -99,7 +128,7 @@ class FlutterProArchitectCli {
 }
 
 class _Ansi {
-  static const reset = '\u001b[0m';
-  static const red = '\u001b[31m';
-  static const green = '\u001b[32m';
+  static const String reset = '\u001b[0m';
+  static const String red = '\u001b[31m';
+  static const String green = '\u001b[32m';
 }

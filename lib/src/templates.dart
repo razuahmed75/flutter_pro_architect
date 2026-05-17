@@ -1,4 +1,22 @@
+/// Template catalog used by the generator to write feature files.
+///
+/// Every method returns full file content as a string.
+///
+/// Example:
+/// ```dart
+/// final content = Templates.coreUseCase();
+/// print(content);
+/// ```
 class Templates {
+  /// Builds the shared core use case contract template.
+  ///
+  /// Returns:
+  /// - Dart source content for `lib/core/usecase/usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.coreUseCase();
+  /// ```
   static String coreUseCase() => '''
 import 'package:dartz/dartz.dart';
 
@@ -13,6 +31,15 @@ class NoParams {
 }
 ''';
 
+  /// Builds the shared core failure contract template.
+  ///
+  /// Returns:
+  /// - Dart source content for `lib/core/error/failure.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.coreFailure();
+  /// ```
   static String coreFailure() => '''
 import 'package:equatable/equatable.dart';
 
@@ -34,6 +61,22 @@ class CacheFailure extends Failure {
 }
 ''';
 
+  /// Builds a domain entity template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_entity.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.entity(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String entity({required String featureSnake, required String featurePascal}) => '''
 import 'package:equatable/equatable.dart';
 
@@ -53,6 +96,22 @@ class ${featurePascal}Entity extends Equatable {
 }
 ''';
 
+  /// Builds a data model template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_model.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.model(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String model({required String featureSnake, required String featurePascal}) => '''
 import '../../domain/entities/${featureSnake}_entity.dart';
 
@@ -89,6 +148,22 @@ class ${featurePascal}Model extends ${featurePascal}Entity {
 }
 ''';
 
+  /// Builds an abstract repository template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_repository.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.repository(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String repository({required String featureSnake, required String featurePascal}) => '''
 import 'package:dartz/dartz.dart';
 
@@ -108,6 +183,22 @@ abstract class ${featurePascal}Repository {
 }
 ''';
 
+  /// Builds a remote data source template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_remote_datasource.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.remoteDataSource(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String remoteDataSource({required String featureSnake, required String featurePascal}) => '''
 import '../models/${featureSnake}_model.dart';
 
@@ -167,6 +258,22 @@ class ${featurePascal}RemoteDataSourceImpl implements ${featurePascal}RemoteData
 }
 ''';
 
+  /// Builds a repository implementation template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_repository_impl.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.repositoryImpl(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String repositoryImpl({required String featureSnake, required String featurePascal}) => '''
 import 'package:dartz/dartz.dart';
 
@@ -259,6 +366,22 @@ class ${featurePascal}RepositoryImpl implements ${featurePascal}Repository {
 }
 ''';
 
+  /// Builds the `get all` use case template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `get_<feature>s_usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.getItemsUseCase(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String getItemsUseCase({required String featureSnake, required String featurePascal}) => '''
 import 'package:dartz/dartz.dart';
 
@@ -279,6 +402,22 @@ class Get${featurePascal}sUseCase implements UseCase<List<${featurePascal}Entity
 }
 ''';
 
+  /// Builds the `get by id` use case template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `get_<feature>_by_id_usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.getItemByIdUseCase(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String getItemByIdUseCase({required String featureSnake, required String featurePascal}) => '''
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -309,6 +448,22 @@ class Get${featurePascal}Params extends Equatable {
 }
 ''';
 
+  /// Builds a commented POST use case demo template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `create_<feature>_usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.createItemUseCase(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String createItemUseCase({required String featureSnake, required String featurePascal}) => '''
 // Demo only (commented): POST use case
 // import 'package:dartz/dartz.dart';
@@ -336,6 +491,22 @@ class Get${featurePascal}Params extends Equatable {
 // }
 ''';
 
+  /// Builds a commented PUT use case demo template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `update_<feature>_usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.updateItemUseCase(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String updateItemUseCase({required String featureSnake, required String featurePascal}) => '''
 // Demo only (commented): PUT use case
 // import 'package:dartz/dartz.dart';
@@ -363,6 +534,22 @@ class Get${featurePascal}Params extends Equatable {
 // }
 ''';
 
+  /// Builds a commented PATCH use case demo template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `patch_<feature>_usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.patchItemUseCase(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String patchItemUseCase({required String featureSnake, required String featurePascal}) => '''
 // Demo only (commented): PATCH use case
 // import 'package:dartz/dartz.dart';
@@ -394,6 +581,22 @@ class Get${featurePascal}Params extends Equatable {
 // }
 ''';
 
+  /// Builds a commented DELETE use case demo template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `delete_<feature>_usecase.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.deleteItemUseCase(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String deleteItemUseCase({required String featureSnake, required String featurePascal}) => '''
 // Demo only (commented): DELETE use case
 // import 'package:dartz/dartz.dart';
@@ -424,6 +627,22 @@ class Get${featurePascal}Params extends Equatable {
 // }
 ''';
 
+  /// Builds a BLoC event template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_event.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.event(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String event({required String featureSnake, required String featurePascal}) => '''
 part of '${featureSnake}_bloc.dart';
 
@@ -488,6 +707,22 @@ final class Load${featurePascal}ByIdRequested extends ${featurePascal}Event {
 // }
 ''';
 
+  /// Builds a BLoC state template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_state.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.state(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String state({required String featureSnake, required String featurePascal}) => '''
 part of '${featureSnake}_bloc.dart';
 
@@ -531,6 +766,22 @@ final class ${featurePascal}Error extends ${featurePascal}State {
 }
 ''';
 
+  /// Builds a BLoC class template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_bloc.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.bloc(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String bloc({required String featureSnake, required String featurePascal}) => '''
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -653,6 +904,22 @@ class ${featurePascal}Bloc extends Bloc<${featurePascal}Event, ${featurePascal}S
 }
 ''';
 
+  /// Builds a sample Flutter page template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_page.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.page(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String page({required String featureSnake, required String featurePascal}) => '''
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -695,6 +962,22 @@ class ${featurePascal}Page extends StatelessWidget {
 }
 ''';
 
+  /// Builds a sample widget card template for a feature.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_card.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.card(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String card({required String featureSnake, required String featurePascal}) => '''
 import 'package:flutter/material.dart';
 
@@ -721,6 +1004,22 @@ class ${featurePascal}Card extends StatelessWidget {
 }
 ''';
 
+  /// Builds feature-level dependency registration template.
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  /// - [featurePascal]: Feature name in `PascalCase`.
+  ///
+  /// Returns:
+  /// - Dart source content for `<feature>_injection.dart`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final text = Templates.injection(
+  ///   featureSnake: 'user',
+  ///   featurePascal: 'User',
+  /// );
+  /// ```
   static String injection({required String featureSnake, required String featurePascal}) => '''
 import 'package:get_it/get_it.dart';
 

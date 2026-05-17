@@ -1,50 +1,82 @@
 # flutter_pro_architect
 
-`flutter_pro_architect` is a production-ready Dart CLI for generating Clean Architecture + BLoC feature modules in Flutter projects.
+`flutter_pro_architect` is a production-ready Dart CLI package for Flutter teams that want fast, consistent Clean Architecture + BLoC scaffolding.
 
-## Install
+## Package Description
+
+This package provides:
+
+- Dynamic feature scaffolding with `create_bloc_<feature_name>` commands.
+- A setup command for project bootstrap: `flutter pub run flutter_pro_architect:setup`.
+- Clean Architecture boundaries with BLoC presentation templates.
+- Safe generation behavior (existing features are never overwritten).
+
+## Installation
 
 ```bash
 dart pub global activate flutter_pro_architect
 ```
 
-## Usage
+Or use directly in a project:
+
+```bash
+dart pub add --dev flutter_pro_architect
+```
+
+## Quick Start
+
+Generate a feature module named `user`:
 
 ```bash
 flutter_pro_architect create_bloc_user
-flutter_pro_architect create_bloc_auth
-flutter_pro_architect create_bloc_product
 ```
 
-Command pattern:
+Bootstrap project structure (Android + iOS by default):
 
-```text
-create_bloc_<feature_name>
+```bash
+flutter pub run flutter_pro_architect:setup
 ```
 
-## What it generates
+Platform-specific setup options:
+
+```bash
+flutter pub run flutter_pro_architect:setup --android
+flutter pub run flutter_pro_architect:setup --ios
+flutter pub run flutter_pro_architect:setup --both
+```
+
+## Platform Support
+
+| Platform | Supported |
+|---|---|
+| Android | ✅ |
+| iOS | ✅ |
+| Web | ✅ |
+| macOS | ✅ |
+| Linux | ✅ |
+| Windows | ✅ |
+
+## Generated Structure (Example)
 
 For `create_bloc_user`:
 
 ```text
 lib/
+ ├── core/
+ │   ├── error/failure.dart
+ │   └── usecase/usecase.dart
  └── features/
      └── user/
          ├── data/
-         │   ├── datasources/
-         │   │   └── user_remote_datasource.dart
-         │   ├── models/
-         │   │   └── user_model.dart
-         │   └── repositories/
-         │       └── user_repository_impl.dart
+         │   ├── datasources/user_remote_datasource.dart
+         │   ├── models/user_model.dart
+         │   └── repositories/user_repository_impl.dart
          ├── domain/
-         │   ├── entities/
-         │   │   └── user_entity.dart
-         │   ├── repositories/
-         │   │   └── user_repository.dart
+         │   ├── entities/user_entity.dart
+         │   ├── repositories/user_repository.dart
          │   └── usecases/
          │       ├── get_users_usecase.dart
-         │       └── get_user_by_id_usecase.dart
+         │       ├── get_user_by_id_usecase.dart
          │       ├── create_user_usecase.dart
          │       ├── update_user_usecase.dart
          │       ├── patch_user_usecase.dart
@@ -54,47 +86,65 @@ lib/
          │   │   ├── user_bloc.dart
          │   │   ├── user_event.dart
          │   │   └── user_state.dart
-         │   ├── pages/
-         │   │   └── user_page.dart
-         │   └── widgets/
-         │       └── user_card.dart
+         │   ├── pages/user_page.dart
+         │   └── widgets/user_card.dart
          └── user_injection.dart
 ```
 
-Core is created once and reused:
+## Full API Reference
 
-```text
-lib/core/
- ├── usecase/usecase.dart
- └── error/failure.dart
+| API | Type | Purpose |
+|---|---|---|
+| `FlutterProArchitectCli` | class | Main CLI runner for `create_bloc_<feature>` command parsing and generation. |
+| `GenerationSummary` | class | Immutable result model for generator output logs and status. |
+| `FeatureGenerator` | class | Feature and core scaffold writer. |
+| `toSnakeCase` | function | Converts raw names to snake_case. |
+| `toPascalCase` | function | Converts raw names to PascalCase. |
+| `Templates` | class | Produces all generated Dart file templates as strings. |
+
+## Working Full Code Example
+
+```dart
+import 'package:flutter_pro_architect/flutter_pro_architect.dart';
+
+Future<void> main() async {
+  final cli = FlutterProArchitectCli();
+
+  final exitCode = await cli.run([
+    'create_bloc_user',
+    '--no-color',
+  ]);
+
+  if (exitCode != 0) {
+    throw Exception('Generation failed with exit code: $exitCode');
+  }
+
+  final snake = toSnakeCase('UserProfile');
+  final pascal = toPascalCase('user_profile');
+
+  print('snake_case: $snake');
+  print('PascalCase: $pascal');
+}
 ```
 
-## Guarantees
+## Example
 
-- Clean Architecture boundaries:
-  - `Presentation -> UseCase -> Repository -> DataSource`
-- BLoC-only presentation layer
-- Pure Dart domain layer
-- Explicit `Model -> Entity` mapping
-- Demo API contracts for `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
-- Safe generation (won't overwrite an existing feature)
-- snake_case file names + PascalCase classes
+An interactive, premium-designed demonstration and workbench application is provided in the [example](./example) folder.
 
-## Generated code dependencies
+This workbench application showcases:
+- **Interactive name conversions** showing `toSnakeCase` and `toPascalCase` outputs in real time.
+- **Template catalogs** where you can select, inspect, and copy all templates generated by the `Templates` class.
+- **Live file scaffolding** using `FeatureGenerator` and `GenerationSummary` to safely write feature files in a sandboxed temp folder and explore them in an interactive file explorer.
+- **Simulated CLI executions** using `FlutterProArchitectCli` to run scaffolding terminal commands and inspect output streams.
 
-Add these to your Flutter app (the generator does not edit app dependencies automatically):
+For instructions on compiling and running this playroom application, refer to the [Example Documentation](./example/README.md).
 
-```yaml
-dependencies:
-  bloc: ^9.0.0
-  flutter_bloc: ^9.0.0
-  dartz: ^0.10.1
-  equatable: ^2.0.7
-  get_it: ^8.0.3
-```
+## Notes
 
-## Options
+- Non-GET use case/data source/repository/BLoC sections are generated as commented demo blocks.
+- Generated feature code expects app dependencies such as `bloc`, `flutter_bloc`, `equatable`, `dartz`, and `get_it` in the target Flutter app.
 
-```bash
-flutter_pro_architect create_bloc_user --no-color
-```
+## License
+
+MIT
+

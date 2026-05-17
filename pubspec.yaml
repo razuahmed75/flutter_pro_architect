@@ -1,9 +1,16 @@
 name: flutter_pro_architect
-description: Production-ready Dart CLI for generating Clean Architecture + BLoC feature modules in Flutter projects.
+description: Production-ready Dart CLI that scaffolds Clean Architecture and BLoC feature modules for scalable Flutter apps.
 version: 2.0.0
 homepage: https://github.com/razuahmed75/flutter_pro_architect
 repository: https://github.com/razuahmed75/flutter_pro_architect
 issue_tracker: https://github.com/razuahmed75/flutter_pro_architect/issues
+topics:
+  - flutter
+  - clean-architecture
+  - bloc
+screenshots:
+  - description: CLI setup command output summary.
+    path: screenshots/setup_summary.png
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -18,3 +25,4 @@ dev_dependencies:
 
 executables:
   flutter_pro_architect: flutter_pro_architect
+  setup: setup

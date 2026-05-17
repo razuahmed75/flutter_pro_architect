@@ -3,18 +3,97 @@ import 'dart:io';
 import 'name_utils.dart';
 import 'templates.dart';
 
+/// Result contract for a generation run.
+///
+/// Example:
+/// ```dart
+/// final summary = GenerationSummary(success: true, messages: ['Done']);
+/// print(summary.success);
+/// ```
 class GenerationSummary {
+  /// Creates a generation summary object.
+  ///
+  /// Parameters:
+  /// - [success]: Indicates whether generation completed successfully.
+  /// - [messages]: Human-readable logs produced during generation.
+  ///
+  /// Returns:
+  /// - A [GenerationSummary] instance.
+  ///
+  /// Example:
+  /// ```dart
+  /// final summary = GenerationSummary(
+  ///   success: false,
+  ///   messages: ['Feature already exists'],
+  /// );
+  /// ```
   GenerationSummary({required this.success, required this.messages});
 
+  /// Indicates whether generation was successful.
+  ///
+  /// Example:
+  /// ```dart
+  /// if (summary.success) {
+  ///   print('ok');
+  /// }
+  /// ```
   final bool success;
+
+  /// Ordered log messages generated during scaffolding.
+  ///
+  /// Example:
+  /// ```dart
+  /// for (final line in summary.messages) {
+  ///   print(line);
+  /// }
+  /// ```
   final List<String> messages;
 }
 
+/// Generates a complete feature module using package templates.
+///
+/// Example:
+/// ```dart
+/// final generator = FeatureGenerator(colorEnabled: false);
+/// final summary = await generator.generate('user');
+/// print(summary.success);
+/// ```
 class FeatureGenerator {
+  /// Creates a feature generator instance.
+  ///
+  /// Parameters:
+  /// - [colorEnabled]: Enables ANSI color in generated logs.
+  ///
+  /// Returns:
+  /// - A [FeatureGenerator] configured for the current run.
+  ///
+  /// Example:
+  /// ```dart
+  /// final generator = FeatureGenerator(colorEnabled: true);
+  /// ```
   FeatureGenerator({required this.colorEnabled});
 
+  /// Whether generated terminal logs include ANSI color styling.
+  ///
+  /// Example:
+  /// ```dart
+  /// print(generator.colorEnabled);
+  /// ```
   final bool colorEnabled;
 
+  /// Generates core files and a feature module for [featureSnake].
+  ///
+  /// Parameters:
+  /// - [featureSnake]: Feature name in `snake_case`.
+  ///
+  /// Returns:
+  /// - A [GenerationSummary] describing created and skipped files.
+  ///
+  /// Example:
+  /// ```dart
+  /// final result = await generator.generate('product');
+  /// print(result.messages.join('\n'));
+  /// ```
   Future<GenerationSummary> generate(String featureSnake) async {
     final messages = <String>[];
     final featureRoot = Directory('lib/features/$featureSnake');
@@ -100,8 +179,8 @@ class FeatureGenerator {
 }
 
 class _Ansi {
-  static const reset = '\u001b[0m';
-  static const red = '\u001b[31m';
-  static const green = '\u001b[32m';
-  static const yellow = '\u001b[33m';
+  static const String reset = '\u001b[0m';
+  static const String red = '\u001b[31m';
+  static const String green = '\u001b[32m';
+  static const String yellow = '\u001b[33m';
 }
