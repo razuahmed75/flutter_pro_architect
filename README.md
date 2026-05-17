@@ -31,10 +31,10 @@ Generate a feature module named `user`:
 flutter_pro_architect create_bloc_user
 ```
 
-Install Default flutter packages:
+Install necessary flutter packages:
 
 ```bash
-flutter_pro_architect:setup
+flutter_pro_architect setup
 ```
 Bootstrap project structure (Android + iOS by default):
 

@@ -264,13 +264,13 @@ void _printSummary({
   required List<String> skippedPackages,
 }) {
   stdout.writeln('');
-  stdout.writeln('${_cyan}Summary${_reset}');
+  stdout.writeln('${_cyan}Summary$_reset');
   stdout.writeln(
     'Target platforms: ${android ? 'Android ' : ''}${ios ? 'iOS' : ''}'.trim(),
   );
   stdout.writeln('');
 
-  stdout.writeln('${_cyan}Directories & Files${_reset}');
+  stdout.writeln('${_cyan}Directories & Files$_reset');
   stdout.writeln('  Created: ${created.length}');
   for (final item in created) {
     stdout.writeln('    + $item');
@@ -281,7 +281,7 @@ void _printSummary({
   }
 
   stdout.writeln('');
-  stdout.writeln('${_cyan}Packages${_reset}');
+  stdout.writeln('${_cyan}Packages$_reset');
   stdout.writeln('  Added:   ${addedPackages.length}');
   for (final item in addedPackages) {
     stdout.writeln('    + $item');

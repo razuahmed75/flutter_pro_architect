@@ -173,13 +173,13 @@ import '../entities/${featureSnake}_entity.dart';
 abstract class ${featurePascal}Repository {
   Future<Either<Failure, List<${featurePascal}Entity>>> get${featurePascal}s();
   Future<Either<Failure, ${featurePascal}Entity>> get${featurePascal}ById(String id);
-  // Future<Either<Failure, ${featurePascal}Entity>> create${featurePascal}(${featurePascal}Entity entity);
-  // Future<Either<Failure, ${featurePascal}Entity>> update${featurePascal}(${featurePascal}Entity entity);
-  // Future<Either<Failure, ${featurePascal}Entity>> patch${featurePascal}({
+  // Future<Either<Failure, ${featurePascal}Entity>> create$featurePascal(${featurePascal}Entity entity);
+  // Future<Either<Failure, ${featurePascal}Entity>> update$featurePascal(${featurePascal}Entity entity);
+  // Future<Either<Failure, ${featurePascal}Entity>> patch$featurePascal({
   //   required String id,
   //   required Map<String, dynamic> patchData,
   // });
-  // Future<Either<Failure, void>> delete${featurePascal}(String id);
+  // Future<Either<Failure, void>> delete$featurePascal(String id);
 }
 ''';
 
@@ -205,13 +205,13 @@ import '../models/${featureSnake}_model.dart';
 abstract class ${featurePascal}RemoteDataSource {
   Future<List<${featurePascal}Model>> get${featurePascal}s();
   Future<${featurePascal}Model> get${featurePascal}ById(String id);
-  // Future<${featurePascal}Model> create${featurePascal}(${featurePascal}Model model);
-  // Future<${featurePascal}Model> update${featurePascal}(${featurePascal}Model model);
-  // Future<${featurePascal}Model> patch${featurePascal}({
+  // Future<${featurePascal}Model> create$featurePascal(${featurePascal}Model model);
+  // Future<${featurePascal}Model> update$featurePascal(${featurePascal}Model model);
+  // Future<${featurePascal}Model> patch$featurePascal({
   //   required String id,
   //   required Map<String, dynamic> patchData,
   // });
-  // Future<void> delete${featurePascal}(String id);
+  // Future<void> delete$featurePascal(String id);
 }
 
 class ${featurePascal}RemoteDataSourceImpl implements ${featurePascal}RemoteDataSource {
@@ -230,19 +230,19 @@ class ${featurePascal}RemoteDataSourceImpl implements ${featurePascal}RemoteData
   }
 
   // @override
-  // Future<${featurePascal}Model> create${featurePascal}(${featurePascal}Model model) async {
+  // Future<${featurePascal}Model> create$featurePascal(${featurePascal}Model model) async {
   //   // POST /${featureSnake}s
   //   throw UnimplementedError('Implement POST /${featureSnake}s');
   // }
 
   // @override
-  // Future<${featurePascal}Model> update${featurePascal}(${featurePascal}Model model) async {
+  // Future<${featurePascal}Model> update$featurePascal(${featurePascal}Model model) async {
   //   // PUT /${featureSnake}s/:id
   //   throw UnimplementedError('Implement PUT /${featureSnake}s/:id');
   // }
 
   // @override
-  // Future<${featurePascal}Model> patch${featurePascal}({
+  // Future<${featurePascal}Model> patch$featurePascal({
   //   required String id,
   //   required Map<String, dynamic> patchData,
   // }) async {
@@ -251,7 +251,7 @@ class ${featurePascal}RemoteDataSourceImpl implements ${featurePascal}RemoteData
   // }
 
   // @override
-  // Future<void> delete${featurePascal}(String id) async {
+  // Future<void> delete$featurePascal(String id) async {
   //   // DELETE /${featureSnake}s/:id
   //   throw UnimplementedError('Implement DELETE /${featureSnake}s/:id');
   // }
@@ -310,9 +310,9 @@ class ${featurePascal}RepositoryImpl implements ${featurePascal}Repository {
   }
 
   // @override
-  // Future<Either<Failure, ${featurePascal}Entity>> create${featurePascal}(${featurePascal}Entity entity) async {
+  // Future<Either<Failure, ${featurePascal}Entity>> create$featurePascal(${featurePascal}Entity entity) async {
   //   try {
-  //     final created = await remoteDataSource.create${featurePascal}(
+  //     final created = await remoteDataSource.create$featurePascal(
   //       ${featurePascal}Model(
   //         id: entity.id,
   //         name: entity.name,
@@ -326,9 +326,9 @@ class ${featurePascal}RepositoryImpl implements ${featurePascal}Repository {
   // }
 
   // @override
-  // Future<Either<Failure, ${featurePascal}Entity>> update${featurePascal}(${featurePascal}Entity entity) async {
+  // Future<Either<Failure, ${featurePascal}Entity>> update$featurePascal(${featurePascal}Entity entity) async {
   //   try {
-  //     final updated = await remoteDataSource.update${featurePascal}(
+  //     final updated = await remoteDataSource.update$featurePascal(
   //       ${featurePascal}Model(
   //         id: entity.id,
   //         name: entity.name,
@@ -342,12 +342,12 @@ class ${featurePascal}RepositoryImpl implements ${featurePascal}Repository {
   // }
 
   // @override
-  // Future<Either<Failure, ${featurePascal}Entity>> patch${featurePascal}({
+  // Future<Either<Failure, ${featurePascal}Entity>> patch$featurePascal({
   //   required String id,
   //   required Map<String, dynamic> patchData,
   // }) async {
   //   try {
-  //     final patched = await remoteDataSource.patch${featurePascal}(id: id, patchData: patchData);
+  //     final patched = await remoteDataSource.patch$featurePascal(id: id, patchData: patchData);
   //     return Right(patched.toEntity());
   //   } catch (error) {
   //     return Left(ServerFailure(error.toString()));
@@ -355,9 +355,9 @@ class ${featurePascal}RepositoryImpl implements ${featurePascal}Repository {
   // }
 
   // @override
-  // Future<Either<Failure, void>> delete${featurePascal}(String id) async {
+  // Future<Either<Failure, void>> delete$featurePascal(String id) async {
   //   try {
-  //     await remoteDataSource.delete${featurePascal}(id);
+  //     await remoteDataSource.delete$featurePascal(id);
   //     return const Right(null);
   //   } catch (error) {
   //     return Left(ServerFailure(error.toString()));
@@ -480,7 +480,7 @@ class Get${featurePascal}Params extends Equatable {
 //
 //   @override
 //   Future<Either<Failure, ${featurePascal}Entity>> call(Create${featurePascal}Params params) {
-//     return repository.create${featurePascal}(params.entity);
+//     return repository.create$featurePascal(params.entity);
 //   }
 // }
 //
@@ -523,7 +523,7 @@ class Get${featurePascal}Params extends Equatable {
 //
 //   @override
 //   Future<Either<Failure, ${featurePascal}Entity>> call(Update${featurePascal}Params params) {
-//     return repository.update${featurePascal}(params.entity);
+//     return repository.update$featurePascal(params.entity);
 //   }
 // }
 //
@@ -566,7 +566,7 @@ class Get${featurePascal}Params extends Equatable {
 //
 //   @override
 //   Future<Either<Failure, ${featurePascal}Entity>> call(Patch${featurePascal}Params params) {
-//     return repository.patch${featurePascal}(id: params.id, patchData: params.patchData);
+//     return repository.patch$featurePascal(id: params.id, patchData: params.patchData);
 //   }
 // }
 //
@@ -613,7 +613,7 @@ class Get${featurePascal}Params extends Equatable {
 //
 //   @override
 //   Future<Either<Failure, void>> call(Delete${featurePascal}Params params) {
-//     return repository.delete${featurePascal}(params.id);
+//     return repository.delete$featurePascal(params.id);
 //   }
 // }
 //
@@ -860,7 +860,7 @@ class ${featurePascal}Bloc extends Bloc<${featurePascal}Event, ${featurePascal}S
   //   final result = await _create${featurePascal}UseCase(Create${featurePascal}Params(entity: event.entity));
   //   result.fold(
   //     (failure) => emit(${featurePascal}Error(failure.message)),
-  //     (item) => emit(${featurePascal}Loaded(items: const [], selected: item, message: '${featurePascal} created')),
+  //     (item) => emit(${featurePascal}Loaded(items: const [], selected: item, message: '$featurePascal created')),
   //   );
   // }
   //
@@ -872,7 +872,7 @@ class ${featurePascal}Bloc extends Bloc<${featurePascal}Event, ${featurePascal}S
   //   final result = await _update${featurePascal}UseCase(Update${featurePascal}Params(entity: event.entity));
   //   result.fold(
   //     (failure) => emit(${featurePascal}Error(failure.message)),
-  //     (item) => emit(${featurePascal}Loaded(items: const [], selected: item, message: '${featurePascal} updated')),
+  //     (item) => emit(${featurePascal}Loaded(items: const [], selected: item, message: '$featurePascal updated')),
   //   );
   // }
   //
@@ -886,7 +886,7 @@ class ${featurePascal}Bloc extends Bloc<${featurePascal}Event, ${featurePascal}S
   //   );
   //   result.fold(
   //     (failure) => emit(${featurePascal}Error(failure.message)),
-  //     (item) => emit(${featurePascal}Loaded(items: const [], selected: item, message: '${featurePascal} patched')),
+  //     (item) => emit(${featurePascal}Loaded(items: const [], selected: item, message: '$featurePascal patched')),
   //   );
   // }
   //
@@ -898,7 +898,7 @@ class ${featurePascal}Bloc extends Bloc<${featurePascal}Event, ${featurePascal}S
   //   final result = await _delete${featurePascal}UseCase(Delete${featurePascal}Params(id: event.id));
   //   result.fold(
   //     (failure) => emit(${featurePascal}Error(failure.message)),
-  //     (_) => emit(${featurePascal}Loaded(items: const [], message: '${featurePascal} deleted')),
+  //     (_) => emit(${featurePascal}Loaded(items: const [], message: '$featurePascal deleted')),
   //   );
   // }
 }
