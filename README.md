@@ -1,46 +1,100 @@
-# Flutter Pro Architect 🚀
+# flutter_pro_architect
 
-**Flutter Pro Architect** is a high-productivity VS Code extension designed for Flutter developers. It automates the tedious process of setting up a Clean Architecture folder structure and installing essential industry-standard packages in one click.
+`flutter_pro_architect` is a production-ready Dart CLI for generating Clean Architecture + BLoC feature modules in Flutter projects.
 
+## Install
 
+```bash
+dart pub global activate flutter_pro_architect
+```
 
-## ✨ Features
+## Usage
 
--   **📁 One-Click Scaffolding**: Instantly generates a professional, modular folder structure (App, Data, View, Controllers, Repositories, etc.).
--   **📦 Dependency Automation**: Automatically adds essential packages to your `pubspec.yaml` including:
-    -   `get` (State Management)
-    -   `dio` (Networking)
-    -   `objectbox` (Local Database)
-    -   `go_router` (Routing)
-    -   `get_it` (Service Locator)
--   **🛠️ Smart Boilerplate**: Generates ready-to-use utility files like `ObjectBoxHelper` and `AppEnv` configurations.
--   **🖱️ Context Menu Support**: Right-click on any folder in the Explorer to trigger the generator.
+```bash
+flutter_pro_architect create_bloc_user
+flutter_pro_architect create_bloc_auth
+flutter_pro_architect create_bloc_product
+```
 
-## 📂 Generated Structure
+Command pattern:
 
-The extension follows a professional Clean Architecture pattern:
+```text
+create_bloc_<feature_name>
+```
+
+## What it generates
+
+For `create_bloc_user`:
 
 ```text
 lib/
-├── app/            # App-wide configuration & environment setup
-├── controllers/    # Business logic & State management (GetX)
-├── data/           # Remote & Local data sources
-│   └── source/     # API clients, Interceptors, and ObjectBox storage
-├── di/             # Dependency Injection / Service Locator
-├── model/          # Data models and entities
-├── repositories/   # Repository pattern implementation
-├── res/            # Resources: Constants, Themes, Routes, Enums
-├── utils/          # Helper classes, Validators, Loggers
-└── view/           # UI Layer: Screens and reusable Widgets
+ └── features/
+     └── user/
+         ├── data/
+         │   ├── datasources/
+         │   │   └── user_remote_datasource.dart
+         │   ├── models/
+         │   │   └── user_model.dart
+         │   └── repositories/
+         │       └── user_repository_impl.dart
+         ├── domain/
+         │   ├── entities/
+         │   │   └── user_entity.dart
+         │   ├── repositories/
+         │   │   └── user_repository.dart
+         │   └── usecases/
+         │       ├── get_users_usecase.dart
+         │       └── get_user_by_id_usecase.dart
+         │       ├── create_user_usecase.dart
+         │       ├── update_user_usecase.dart
+         │       ├── patch_user_usecase.dart
+         │       └── delete_user_usecase.dart
+         ├── presentation/
+         │   ├── bloc/
+         │   │   ├── user_bloc.dart
+         │   │   ├── user_event.dart
+         │   │   └── user_state.dart
+         │   ├── pages/
+         │   │   └── user_page.dart
+         │   └── widgets/
+         │       └── user_card.dart
+         └── user_injection.dart
 ```
-<img width="343" height="945" alt="project_structure" src="https://github.com/user-attachments/assets/df4d12c8-1b5c-4aba-ab5c-fc6568c35774" />
-<img width="415" height="946" alt="packages" src="https://github.com/user-attachments/assets/ebe02ccb-90c5-4be2-8214-32b68f399262" />
 
-## 🚀 Installation & Usage
+Core is created once and reused:
 
+```text
+lib/core/
+ ├── usecase/usecase.dart
+ └── error/failure.dart
+```
 
-### 1. Global Activation
-To use the tool from anywhere on your machine, activate it globally via the Dart SDK:
+## Guarantees
 
-1. dart pub global activate flutter_pro_architect
-2. flutter_pro_architect
+- Clean Architecture boundaries:
+  - `Presentation -> UseCase -> Repository -> DataSource`
+- BLoC-only presentation layer
+- Pure Dart domain layer
+- Explicit `Model -> Entity` mapping
+- Demo API contracts for `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
+- Safe generation (won't overwrite an existing feature)
+- snake_case file names + PascalCase classes
+
+## Generated code dependencies
+
+Add these to your Flutter app (the generator does not edit app dependencies automatically):
+
+```yaml
+dependencies:
+  bloc: ^9.0.0
+  flutter_bloc: ^9.0.0
+  dartz: ^0.10.1
+  equatable: ^2.0.7
+  get_it: ^8.0.3
+```
+
+## Options
+
+```bash
+flutter_pro_architect create_bloc_user --no-color
+```

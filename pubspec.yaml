@@ -1,14 +1,20 @@
-name: flutter_pro_architect  # This will be your command name
-description: A global CLI tool to generate Clean Architecture for Flutter.
+name: flutter_pro_architect
+description: Production-ready Dart CLI for generating Clean Architecture + BLoC feature modules in Flutter projects.
 version: 1.0.0
-homepage: https://github.com/razuahmed75/flutter_architecture
+homepage: https://github.com/razuahmed75/flutter_pro_architect
+repository: https://github.com/razuahmed75/flutter_pro_architect
+issue_tracker: https://github.com/razuahmed75/flutter_pro_architect/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
-
-
 dependencies:
-  flutter:
-    sdk: flutter
   args: ^2.7.0
+  path: ^1.9.1
+
+dev_dependencies:
+  lints: ^5.1.1
+  test: ^1.26.2
+
+executables:
+  flutter_pro_architect: flutter_pro_architect
