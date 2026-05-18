@@ -281,7 +281,6 @@ import '../../../../core/error/failure.dart';
 import '../../domain/entities/${featureSnake}_entity.dart';
 import '../../domain/repositories/${featureSnake}_repository.dart';
 import '../datasources/${featureSnake}_remote_datasource.dart';
-import '../models/${featureSnake}_model.dart';
 
 class ${featurePascal}RepositoryImpl implements ${featurePascal}Repository {
   const ${featurePascal}RepositoryImpl(this.remoteDataSource);

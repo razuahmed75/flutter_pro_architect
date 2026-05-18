@@ -61,6 +61,26 @@ flutter pub run flutter_pro_architect:setup --both
 | Linux | ✅ |
 | Windows | ✅ |
 
+## Installed Packages
+
+When you run the `setup` command, the following essential packages are automatically added to your `pubspec.yaml`, organized by category:
+
+| Category | Packages |
+|---|---|
+| **Icon** | `hugeicons` |
+| **Navigation** | `go_router`, `path_provider` |
+| **Toast** | `cherry_toast`, `fluttertoast` |
+| **Env** | `flutter_dotenv` |
+| **Local Storage** | `flutter_secure_storage` |
+| **Network** | `dio`, `talker_dio_logger`, `retrofit`, `dio_cache_interceptor`, `synchronized` |
+| **UI** | `flutter_screenutil` |
+| **App Config** | `rename_app`, `change_app_package_name`, `flutter_launcher_icons`, `in_app_update`, `package_info_plus` |
+| **Image** | `cached_network_image`, `flutter_cache_manager` |
+| **Date & Time** | `intl` |
+| **Logger** | `logger` |
+| **Utils** | `photo_view`, `image_picker`, `file_picker`, `carousel_slider`, `url_launcher`, `pinput` |
+| **Core** | `dartz`, `flutter_bloc`, `equatable`, `get_it` |
+
 ## Generated Structure (Example)
 
 For `create_bloc_user`:
