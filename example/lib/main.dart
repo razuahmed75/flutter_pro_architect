@@ -81,7 +81,7 @@ class _MainPlayroomScreenState extends State<MainPlayroomScreen> with SingleTick
     {'label': 'BLoC Events', 'value': 'event'},
     {'label': 'BLoC States', 'value': 'state'},
     {'label': 'BLoC Core', 'value': 'bloc'},
-    {'label': 'Presentation Page', 'value': 'page'},
+    {'label': 'Presentation Screen', 'value': 'screen'},
     {'label': 'Presentation Card', 'value': 'card'},
     {'label': 'GetIt Dependency Injection', 'value': 'injection'},
   ];
@@ -188,8 +188,8 @@ class _MainPlayroomScreenState extends State<MainPlayroomScreen> with SingleTick
       case 'bloc':
         _generatedTemplateSource = Templates.bloc(featureSnake: snake, featurePascal: pascal);
         break;
-      case 'page':
-        _generatedTemplateSource = Templates.page(featureSnake: snake, featurePascal: pascal);
+      case 'screen':
+        _generatedTemplateSource = Templates.screen(featureSnake: snake, featurePascal: pascal);
         break;
       case 'card':
         _generatedTemplateSource = Templates.card(featureSnake: snake, featurePascal: pascal);

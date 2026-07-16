@@ -154,8 +154,8 @@ class FeatureGenerator {
           Templates.event(featureSnake: featureSnake, featurePascal: featurePascal),
       'lib/features/$featureSnake/presentation/bloc/${featureSnake}_state.dart':
           Templates.state(featureSnake: featureSnake, featurePascal: featurePascal),
-      'lib/features/$featureSnake/presentation/pages/${featureSnake}_page.dart':
-          Templates.page(featureSnake: featureSnake, featurePascal: featurePascal),
+      'lib/features/$featureSnake/presentation/screens/${featureSnake}_screen.dart':
+          Templates.screen(featureSnake: featureSnake, featurePascal: featurePascal),
       'lib/features/$featureSnake/presentation/widgets/${featureSnake}_card.dart':
           Templates.card(featureSnake: featureSnake, featurePascal: featurePascal),
       'lib/features/$featureSnake/${featureSnake}_injection.dart':

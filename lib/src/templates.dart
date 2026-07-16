@@ -903,31 +903,31 @@ class ${featurePascal}Bloc extends Bloc<${featurePascal}Event, ${featurePascal}S
 }
 ''';
 
-  /// Builds a sample Flutter page template for a feature.
+  /// Builds a sample Flutter screen template for a feature.
   ///
   /// Parameters:
   /// - [featureSnake]: Feature name in `snake_case`.
   /// - [featurePascal]: Feature name in `PascalCase`.
   ///
   /// Returns:
-  /// - Dart source content for `<feature>_page.dart`.
+  /// - Dart source content for `<feature>_screen.dart`.
   ///
   /// Example:
   /// ```dart
-  /// final text = Templates.page(
+  /// final text = Templates.screen(
   ///   featureSnake: 'user',
   ///   featurePascal: 'User',
   /// );
   /// ```
-  static String page({required String featureSnake, required String featurePascal}) => '''
+  static String screen({required String featureSnake, required String featurePascal}) => '''
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/${featureSnake}_bloc.dart';
 import '../widgets/${featureSnake}_card.dart';
 
-class ${featurePascal}Page extends StatelessWidget {
-  const ${featurePascal}Page({super.key});
+class ${featurePascal}Screen extends StatelessWidget {
+  const ${featurePascal}Screen({super.key});
 
   @override
   Widget build(BuildContext context) {

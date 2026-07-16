@@ -111,7 +111,7 @@ lib/
          │   │   ├── user_bloc.dart
          │   │   ├── user_event.dart
          │   │   └── user_state.dart
-         │   ├── pages/user_page.dart
+         │   ├── screens/user_screen.dart
          │   └── widgets/user_card.dart
          └── user_injection.dart
 ```
